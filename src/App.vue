@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <Header />
+    <Header
+      @test="test($event)"
+    />
     <Main />
     <!-- <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/> -->
@@ -18,6 +20,17 @@ export default {
     // HelloWorld,
     Header,
     Main,
+  },
+  data() {
+    return {
+      textSearch: '',
+    };
+  },
+  methods: {
+    test(value) {
+      console.log('value', value);
+      this.textSearch = '';
+    },
   },
 };
 </script>

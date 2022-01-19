@@ -1,9 +1,14 @@
+/* eslint-disable max-len */
+/* eslint-disable max-len */
 <template>
 <div class="container">
   <div class="row">
     <div class="search col">
-      <input type="text" id="search" name="search" v-model="inputText" @keyup.enter="test()">
-      <button class="btn btn-primary" @click="test()">
+      <input
+      type="text"
+      v-model="inputText"
+      @keyup.enter="$emit('test', inputText)">
+      <button class="btn btn-primary" @click="$emit('test', inputText)">
         Cerca
       </button>
     </div>
@@ -20,10 +25,6 @@ export default {
     };
   },
   methods: {
-    test() {
-      console.log(this.inputText);
-      this.inputText = '';
-    },
   },
 };
 </script>
