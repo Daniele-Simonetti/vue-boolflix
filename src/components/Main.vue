@@ -1,5 +1,8 @@
 <template>
   <main class="container">
+    <Search
+      @test="test($event)"
+    />
     <div class="row row-cols-5">
       <Card
       v-for="(film, index) in films" :key="index"
@@ -15,16 +18,19 @@
 <script>
 import axios from 'axios';
 import Card from './Card.vue';
+import Search from './Search.vue';
 
 export default {
   name: 'Main',
   components: {
     Card,
+    Search,
   },
   data() {
     return {
       query: 'https://api.themoviedb.org/3/search/movie?api_key=071d30c82040935e095df236b751dd91&language=it-IT&query=String',
       films: [],
+      textSearch: '',
     };
   },
   created() {
@@ -55,6 +61,12 @@ export default {
       .catch((error) => {
         console.log(error);
       });
+  },
+  methods: {
+    test(value) {
+      console.log('value', value);
+      this.textSearch = value;
+    },
   },
 };
 </script>
