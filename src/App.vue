@@ -29,7 +29,7 @@ export default {
   methods: {
     test(value) {
       console.log('value', value);
-      this.textSearch = '';
+      this.textSearch = value;
     },
   },
 };

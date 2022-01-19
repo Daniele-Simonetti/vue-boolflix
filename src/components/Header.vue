@@ -7,7 +7,7 @@
       <input
       type="text"
       v-model="inputText"
-      @keyup.enter="$emit('test', inputText)">
+      >
       <button class="btn btn-primary" @click="$emit('test', inputText)">
         Cerca
       </button>
