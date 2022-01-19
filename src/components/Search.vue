@@ -2,6 +2,7 @@
   <div class="search col">
       <input
       type="text"
+      placeholder="Cerca il tuo film"
       v-model="inputText"
       >
       <button class="btn btn-primary" @click="$emit('test', inputText)">

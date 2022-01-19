@@ -1,11 +1,14 @@
+/* eslint-disable max-len */
+/* eslint-disable max-len */
 <template>
   <main class="container">
     <Search
-      @test="test($event)"
+      @test="searchBar($event)"
     />
     <div class="row row-cols-5">
       <Card
-      v-for="(film, index) in films" :key="index"
+      v-for="(film, index) in filteredFilms"
+      :key="index"
       :title="film.title"
       :originalTitle="film.original_title"
       :language="film.original_language"
@@ -32,6 +35,17 @@ export default {
       films: [],
       textSearch: '',
     };
+  },
+  computed: {
+    filteredFilms() {
+      if (this.textSearch.trim() === '') {
+        return this.films;
+      }
+      return this.films.filter((element) => element
+        .title
+        .toLowerCase()
+        .includes(this.textSearch.trim().toLowerCase()));
+    },
   },
   created() {
     // "adult": false,
@@ -63,9 +77,12 @@ export default {
       });
   },
   methods: {
-    test(value) {
+    searchBar(value) {
       console.log('value', value);
       this.textSearch = value;
+      // if (this.textSearch === value) {
+      //   this.textSearch = '';
+      // }
     },
   },
 };
