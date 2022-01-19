@@ -3,7 +3,7 @@
 <template>
   <main class="container">
     <Search
-      @test="searchBar($event)"
+      @searching="searchBar($event)"
     />
     <div class="row row-cols-5">
       <Card
@@ -83,6 +83,10 @@ export default {
       // if (this.textSearch === value) {
       //   this.textSearch = '';
       // }
+    },
+    resetSearchBar(value) {
+      this.textSearch = value;
+      return this.films;
     },
   },
 };

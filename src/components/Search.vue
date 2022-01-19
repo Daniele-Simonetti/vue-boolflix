@@ -5,7 +5,7 @@
       placeholder="Cerca il tuo film"
       v-model="inputText"
       >
-      <button class="btn btn-primary" @click="$emit('test', inputText)">
+      <button class="btn btn-primary" @click="$emit('searching', inputText)">
         Cerca
       </button>
     </div>
@@ -18,6 +18,8 @@ export default {
     return {
       inputText: '',
     };
+  },
+  methods: {
   },
 };
 </script>

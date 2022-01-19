@@ -19,8 +19,6 @@ export default {
     Header,
     Main,
   },
-  data() {
-  },
   methods: {
   },
 };
