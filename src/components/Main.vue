@@ -5,11 +5,17 @@
       v-if="cards.length > 0"
       class="row row-cols-5"
     >
+      <div class="col-12">
+        <h1>FILMS</h1>
+      </div>
       <Card
         v-for="(card, index) in cards"
         :key="index+card.id"
         :datas="card"
       />
+      <div class="col-12">
+        <h1>TvSeries</h1>
+      </div>
       <NewCard
         v-for="(newCard, index) in series"
         :key="index+newCard.id"
