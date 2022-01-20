@@ -1,14 +1,17 @@
 <template>
   <div class="search col">
-      <input
+    <input
+      v-model="inputText"
       type="text"
       placeholder="Cerca il tuo film"
-      v-model="inputText"
-      >
-      <button class="btn btn-primary" @click="$emit('searching', inputText)">
-        Cerca
-      </button>
-    </div>
+    >
+    <button
+      class="btn btn-primary"
+      @click="$emit('searching', inputText)"
+    >
+      Cerca
+    </button>
+  </div>
 </template>
 
 <script>

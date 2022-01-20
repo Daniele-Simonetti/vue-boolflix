@@ -3,16 +3,16 @@
     class="card "
   >
     <p>
-      {{title}}
+      {{ title }}
     </p>
     <p>
-      {{originalTitle}}
+      {{ originalTitle }}
     </p>
     <p>
-      {{language}}
+      {{ language }}
     </p>
     <p>
-      {{rating}}
+      {{ rating }}
     </p>
   </div>
 </template>
