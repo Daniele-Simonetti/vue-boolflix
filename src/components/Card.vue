@@ -3,16 +3,16 @@
     class="card "
   >
     <p>
-      {{ title }}
+      {{ datas.title }}
     </p>
     <p>
-      {{ originalTitle }}
+      {{ datas.original_title }}
     </p>
     <p>
-      {{ language }}
+      {{ datas.original_language }}
     </p>
     <p>
-      {{ rating }}
+      {{ datas.vote_average }}
     </p>
   </div>
 </template>
@@ -21,22 +21,7 @@
 export default {
   name: 'Card',
   props: {
-    title: {
-      type: String,
-      required: true,
-    },
-    originalTitle: {
-      type: String,
-      required: true,
-    },
-    language: {
-      type: String,
-      required: true,
-    },
-    rating: {
-      type: Number,
-      required: true,
-    },
+    datas: Object,
   },
 };
 </script>

@@ -1,13 +1,18 @@
 /* eslint-disable max-len */
 <template>
   <main class="container">
-    <div class="row row-cols-5">
+    <div
+      v-if="cards.length > 0"
+      class="row row-cols-5"
+    >
       <Card
-        v-for="(film, index) in cards"
+        v-for="(card, index) in cards"
         :key="index"
-        :title="film.title"
-        :info="card"
+        :datas="card"
       />
+    </div>
+    <div v-else>
+      Nessun risultato
     </div>
   </main>
 </template>

@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <Header @searching="search($event)" />
-    <Main />
-    <!-- <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+    <Main :cards="cards" />
   </div>
 </template>
 
@@ -29,21 +27,21 @@ export default {
     };
   },
   methods: {
-    setTextSearch(value) {
-      this.searchText = value;
-    },
     search(text) {
-      this.searchText = text;
+      this.textSearch = text;
       this.getFilms();
     },
     getFilms() {
+      if (this.textSearch.trim() === '') {
+        return this.cards;
+      }
       const endpoint = 'movie';
       const parameters = {
         api_key: this.api_key,
         language: this.language,
-        query: this.searchText,
+        query: this.textSearch,
       };
-      axios.get(`${this.query}${endpoint}`, { params: parameters }).then((result) => {
+      return axios.get(`${this.query}${endpoint}`, { params: parameters }).then((result) => {
         this.cards = result.data.results;
       }).catch((error) => console.log(error));
     },
