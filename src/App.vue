@@ -28,7 +28,6 @@ export default {
       textSearch: '',
       cards: [],
       series: [],
-      both: [],
     };
   },
   methods: {
