@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <Header @searching="search($event)" />
-    <Main :cards="cards" />
+    <Main
+      :cards="cards"
+      :series="series"
+    />
   </div>
 </template>
 
@@ -24,12 +27,15 @@ export default {
       language: 'it-IT',
       textSearch: '',
       cards: [],
+      series: [],
+      both: [],
     };
   },
   methods: {
     search(text) {
       this.textSearch = text;
       this.getFilms();
+      this.getSeries();
     },
     getFilms() {
       if (this.textSearch.trim() === '') {
@@ -43,6 +49,20 @@ export default {
       };
       return axios.get(`${this.query}${endpoint}`, { params: parameters }).then((result) => {
         this.cards = result.data.results;
+      }).catch((error) => console.log(error));
+    },
+    getSeries() {
+      if (this.textSearch.trim() === '') {
+        return this.series;
+      }
+      const finalpoint = 'tv';
+      const parameters = {
+        api_key: this.api_key,
+        language: this.language,
+        query: this.textSearch,
+      };
+      return axios.get(`${this.query}${finalpoint}`, { params: parameters }).then((result) => {
+        this.series = result.data.results;
       }).catch((error) => console.log(error));
     },
   },

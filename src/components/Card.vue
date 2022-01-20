@@ -1,17 +1,19 @@
 <template>
-  <div
-    class="card "
-  >
-    <p>
-      {{ datas.title }}
-    </p>
-    <p>
-      {{ datas.original_title }}
-    </p>
-    <i :class="'flag flag-' + getFlag(datas.original_language)" />
-    <p>
-      {{ datas.vote_average }}
-    </p>
+  <div>
+    <div
+      class="card "
+    >
+      <p>
+        {{ datas.title }}
+      </p>
+      <p>
+        {{ datas.original_title }}
+      </p>
+      <i :class="'flag flag-' + getFlag(datas.original_language)" />
+      <p>
+        {{ datas.vote_average }}
+      </p>
+    </div>
   </div>
 </template>
 
