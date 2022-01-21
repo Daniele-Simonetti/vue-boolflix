@@ -4,12 +4,19 @@
       class="card "
     >
       <p>
-        {{ datas.title }}
+        title: {{ (datas.title) ? datas.title : datas.name }}
       </p>
       <p>
-        {{ datas.original_title }}
+        original title: {{ (datas.original_title) ?datas.original_title : datas.original_name }}
       </p>
-      <i :class="'flag flag-' + getFlag(datas.original_language)" />
+      <img
+        v-if="getFlag()"
+        :src="require(`../assets/img/${datas.original_language}.png`)"
+        :alt="this.datas.original_language"
+      >
+      <p v-else>
+        language: {{ datas.original_language }}
+      </p>
       <p>
         {{ datas.vote_average }}
       </p>
@@ -24,18 +31,28 @@ export default {
   props: {
     datas: Object,
   },
+  data() {
+    return {
+      allLanguages: [
+        'en',
+        'de',
+        'bn',
+        'it',
+        'ru',
+      ],
+    };
+  },
   methods: {
-    getFlag(lang) {
-      if (lang === 'en') {
-        return 'us';
+    getFlag() {
+      if (this.allLanguages.includes(this.datas.original_language)) {
+        return true;
       }
-      return lang;
+      return false;
     },
   },
 };
 </script>
 
 <style lang="sass" scoped>
-  @import '~mdb-ui-kit/css/mdb.min.css'
 
 </style>

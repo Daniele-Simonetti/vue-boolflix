@@ -2,7 +2,7 @@
   <div id="app">
     <Header @searching="search($event)" />
     <Main
-      :cards="cards"
+      :movies="movies"
       :series="series"
     />
   </div>
@@ -26,7 +26,7 @@ export default {
       api_key: '071d30c82040935e095df236b751dd91',
       language: 'it-IT',
       textSearch: '',
-      cards: [],
+      movies: [],
       series: [],
     };
   },
@@ -38,7 +38,7 @@ export default {
     },
     getFilms() {
       if (this.textSearch.trim() === '') {
-        return this.cards;
+        return this.movies;
       }
       const endpoint = 'movie';
       const parameters = {
@@ -47,7 +47,7 @@ export default {
         query: this.textSearch,
       };
       return axios.get(`${this.query}${endpoint}`, { params: parameters }).then((result) => {
-        this.cards = result.data.results;
+        this.movies = result.data.results;
       }).catch((error) => console.log(error));
     },
     getSeries() {
