@@ -3,6 +3,11 @@
     <div
       class="card "
     >
+      <img
+        v-if="getImg()"
+        :src="`https://image.tmdb.org/t/p/w300/${datas.backdrop_path}`"
+        :alt="datas.title || datas.name"
+      >
       <p>
         title: {{ (datas.title) ? datas.title : datas.name }}
       </p>
@@ -12,7 +17,7 @@
       <img
         v-if="getFlag()"
         :src="require(`../assets/img/${datas.original_language}.png`)"
-        :alt="this.datas.original_language"
+        :alt="datas.original_language"
       >
       <p v-else>
         language: {{ datas.original_language }}
@@ -40,6 +45,7 @@ export default {
         'it',
         'ru',
       ],
+      noImgAvailable: '../assets/img/placeholder.png',
     };
   },
   methods: {
@@ -48,6 +54,12 @@ export default {
         return true;
       }
       return false;
+    },
+    getImg() {
+      if (this.datas.backdrop_path === null) {
+        return this.noImgAvailable;
+      }
+      return this.datas.backdrop_path;
     },
   },
 };
