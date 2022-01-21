@@ -4,8 +4,7 @@
       class="card "
     >
       <img
-        v-if="getImg()"
-        :src="`https://image.tmdb.org/t/p/w300/${datas.backdrop_path}`"
+        :src="getImg()"
         :alt="datas.title || datas.name"
       >
       <p>
@@ -57,7 +56,7 @@ export default {
     },
     getImg() {
       if (this.datas.backdrop_path === null) {
-        return this.noImgAvailable;
+        return 'require(noImgAvailable)';
       }
       return this.datas.backdrop_path;
     },
