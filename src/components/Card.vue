@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 <template>
   <div>
     <div
@@ -25,14 +26,20 @@
           language: {{ datas.original_language }}
         </p>
         <p>
-          {{ datas.vote_average }}
+          vote-average: {{ roundNumber(datas.vote_average) }}
         </p>
+        <i
+          v-for="n in 5"
+          :key="n"
+          :class="(n <= roundNumber(datas.vote_average)) ? 'fas fa-star' : 'far fa-star'"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import '@fortawesome/fontawesome-free/css/all.css';
 
 export default {
   name: 'Card',
@@ -48,6 +55,25 @@ export default {
         'it',
         'ru',
         'fr',
+        'zh',
+        'ja',
+        'cn',
+        'te',
+        'kn',
+        'fi',
+        'pl',
+        'tr',
+        'nl',
+        'ta',
+        'et',
+        'no',
+        'sv',
+        'pt',
+        'th',
+        'da',
+        'cs',
+        'sr',
+        'es',
       ],
     };
   },
@@ -64,6 +90,13 @@ export default {
         return require('../assets/img/placeholder.png');
       }
       return `https://image.tmdb.org/t/p/w300/${this.datas.backdrop_path}`;
+    },
+    roundNumber(number) {
+      // number corrisponde al mio data del voto medio
+      console.log(number, number / 2);
+      // eslint-disable-next-line max-len
+      // con questa formula dico alla mia funzione di prendere il data e dividerlo per tue, arrotondandolo= da 1 a 10 a 1 a 5
+      return Math.round(number / 2);
     },
   },
 };
