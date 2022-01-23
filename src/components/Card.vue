@@ -1,40 +1,48 @@
 /* eslint-disable max-len */
 <template>
-  <div>
+  <div
+    class="card "
+  >
     <div
-      class="card "
+      class="front-img"
+      @mouseover="show = true"
     >
-      <div class="poster">
-        <img
-          :src="getImg()"
-          :alt="datas.title || datas.name"
-        >
-      </div>
-      <div class="text">
-        <p>
-          title: {{ (datas.title) ? datas.title : datas.name }}
-        </p>
-        <p>
-          original title: {{ (datas.original_title) ? datas.original_title : datas.original_name }}
-        </p>
-        <img
-          v-if="getFlag()"
-          :src="require(`../assets/img/${datas.original_language}.png`)"
-          :alt="datas.original_language"
-        >
-        <p v-else>
-          language: {{ datas.original_language }}
-        </p>
-        <p>
-          vote-average: {{ roundNumber(datas.vote_average) }}
-        </p>
-        <i
-          v-for="n in 5"
-          :key="n"
-          :class="(n <= roundNumber(datas.vote_average)) ? 'fas fa-star' : 'far fa-star'"
-        />
-      </div>
+      <img
+        v-show="show === false"
+        :src="getImg()"
+        :alt="datas.title || datas.name"
+      >
     </div>
+    <div
+      v-show="show === true"
+      class="description"
+      @mouseleave="show = false"
+    >
+      <p>
+        title: {{ (datas.title) ? datas.title : datas.name }}
+      </p>
+      <p>
+        original title: {{ (datas.original_title) ? datas.original_title : datas.original_name }}
+      </p>
+      <img
+        v-if="getFlag()"
+        :src="require(`../assets/img/${datas.original_language}.png`)"
+        :alt="datas.original_language"
+      >
+      <p v-else>
+        language: {{ datas.original_language }}
+      </p>
+      <p>
+        vote-average: {{ roundNumber(datas.vote_average) }}
+      </p>
+      <i
+        v-for="n in 5"
+        :key="n"
+        :class="(n <= roundNumber(datas.vote_average)) ? 'fas fa-star' : 'far fa-star'"
+      />
+    </div>
+    <!-- <div class="text">
+      </div> -->
   </div>
 </template>
 
@@ -75,6 +83,7 @@ export default {
         'sr',
         'es',
       ],
+      show: false,
     };
   },
   methods: {
@@ -89,7 +98,7 @@ export default {
         // eslint-disable-next-line global-require
         return require('../assets/img/placeholder.png');
       }
-      return `https://image.tmdb.org/t/p/w300/${this.datas.backdrop_path}`;
+      return `https://image.tmdb.org/t/p/w342/${this.datas.backdrop_path}`;
     },
     roundNumber(number) {
       // number corrisponde al mio data del voto medio
