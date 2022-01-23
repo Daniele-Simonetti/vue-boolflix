@@ -24,7 +24,7 @@ export default {
     return {
       query: 'https://api.themoviedb.org/3/search/',
       api_key: '071d30c82040935e095df236b751dd91',
-      language: 'it-IT',
+      language: 'en-US',
       textSearch: '',
       movies: [],
       series: [],
@@ -76,5 +76,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height: 100vh;
+  background-color: lightgray;
+  overflow: auto;
 }
 </style>

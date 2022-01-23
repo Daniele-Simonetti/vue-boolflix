@@ -1,36 +1,42 @@
 /* eslint-disable max-len */
 <template>
-  <main class="container">
+  <main class="container-fluid">
+    <div class="col-12">
+      <h1>FILMS</h1>
+    </div>
     <div
       v-if="movies.length > 0"
-      class="row row-cols-5"
+      class="row row-cols-6 films"
     >
-      <div class="col-12">
-        <h1>FILMS</h1>
-      </div>
       <Card
         v-for="(card, index) in movies"
         :key="index+ '-' +card.id"
         :datas="card"
       />
     </div>
-    <div v-else>
+    <div
+      v-else
+      class="noFound"
+    >
       Nessun risultato
+    </div>
+    <div class="col-12">
+      <h1>TvSeries</h1>
     </div>
     <div
       v-if="series.length > 0"
-      class="row row-cols-5"
+      class="row row-cols-6 series"
     >
-      <div class="col-12">
-        <h1>TvSeries</h1>
-      </div>
       <Card
         v-for="(card, index) in series"
         :key="index+ '-' +card.id"
         :datas="card"
       />
     </div>
-    <div v-else>
+    <div
+      v-else
+      class="noFound"
+    >
       Nessun risultato
     </div>
   </main>
@@ -61,6 +67,29 @@ export default {
 };
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.row {
+  justify-content: center;
+}
+.noFound {
+  font-size: 3em;
+  margin-top: 5em;
+}
+h1 {
+  margin-top: 1em;
+  font-size: 4em;
+  font-weight: bold;
+  color: red;
+}
+.row {
+  margin-top: 3em;
+}
+.films {
+  height: 50vh;
+  overflow: auto;
+}
+.series {
+  height: 50vh;
+  overflow: auto;
+}
 </style>

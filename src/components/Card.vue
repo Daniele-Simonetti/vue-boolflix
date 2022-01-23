@@ -1,14 +1,15 @@
 /* eslint-disable max-len */
+/* eslint-disable max-len */
 <template>
   <div
     class="card "
   >
     <div
+      v-show="show === false"
       class="front-img"
       @mouseover="show = true"
     >
       <img
-        v-show="show === false"
         :src="getImg()"
         :alt="datas.title || datas.name"
       >
@@ -19,27 +20,45 @@
       @mouseleave="show = false"
     >
       <p>
-        title: {{ (datas.title) ? datas.title : datas.name }}
+        <span>Title:</span> {{ (datas.title) ? datas.title : datas.name }}
       </p>
-      <p>
-        original title: {{ (datas.original_title) ? datas.original_title : datas.original_name }}
+      <p v-if="datas.original_title != datas.title">
+        <span>original title:</span> {{
+          (datas.original_title)
+            ?
+              datas.original_title : datas.original_name
+        }}
       </p>
-      <img
-        v-if="getFlag()"
-        :src="require(`../assets/img/${datas.original_language}.png`)"
-        :alt="datas.original_language"
-      >
+      <p v-if="getFlag()">
+        <span>Language:</span>
+        <img
+          :src="require(`../assets/img/${datas.original_language}.png`)"
+          :alt="datas.original_language"
+          class="flag"
+        >
+      </p>
       <p v-else>
-        language: {{ datas.original_language }}
+        <span>Language:</span> {{ datas.original_language }}
       </p>
+      <p
+        class="Overview"
+      >
+        <span>Overview:</span> {{ (datas.overview != '')
+          ?
+            datas.overview :
+            'no overview avilable' }}
+      </p>
+      <!-- <p v-else>
+        <span>Overview:</span> no overwiev avilable
+      </p> -->
       <p>
-        vote-average: {{ roundNumber(datas.vote_average) }}
+        <span>vote-average:</span>
+        <i
+          v-for="n in 5"
+          :key="n"
+          :class="(n <= roundNumber(datas.vote_average)) ? 'fas fa-star' : 'far fa-star'"
+        />
       </p>
-      <i
-        v-for="n in 5"
-        :key="n"
-        :class="(n <= roundNumber(datas.vote_average)) ? 'fas fa-star' : 'far fa-star'"
-      />
     </div>
     <!-- <div class="text">
       </div> -->
@@ -112,6 +131,39 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.card {
+  font-size: 1em;
+  text-align: left;
+  margin: 1em;
+  background-color: black;
+  color: white;
+  border: 3px solid white;
+  height: 293.66px;
+  padding: 0;
+  div.front-img {
+    height: 100%;
+    img {
+      height: 100%;
+    }
+  }
+  div.description {
+    margin: 0 0.5em;
+  }
+  p {
+    margin-top: 0.6em;
+  }
+  img.flag {
+    width: 10%;
+    margin-left: 0.5em;
+  }
+  span {
+    font-weight: bold;
+  }
+  p.Overview {
+    height: 100px;
+    overflow: auto;
+  }
+}
 img {
   width: 100%;
 }
