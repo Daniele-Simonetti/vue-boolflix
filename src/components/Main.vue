@@ -2,7 +2,7 @@
 <template>
   <main class="container-fluid">
     <div class="col-12">
-      <h1>FILMS</h1>
+      <h1>Films</h1>
     </div>
     <div
       v-if="movies.length > 0"
@@ -21,7 +21,7 @@
       Nessun risultato
     </div>
     <div class="col-12">
-      <h1>TvSeries</h1>
+      <h1>Series</h1>
     </div>
     <div
       v-if="series.length > 0"
@@ -80,16 +80,9 @@ h1 {
   font-size: 4em;
   font-weight: bold;
   color: red;
+  text-transform: uppercase;
 }
 .row {
   margin-top: 3em;
-}
-.films {
-  height: 50vh;
-  overflow: auto;
-}
-.series {
-  height: 50vh;
-  overflow: auto;
 }
 </style>
